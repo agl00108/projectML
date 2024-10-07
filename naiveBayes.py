@@ -16,7 +16,7 @@ y = datos_final['Variedad']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=123)
 
 # 4. Binarizar los datos usando la mediana
-mediana_train = np.median(X_train, axis=0)  # Mediana por columna
+mediana_train = np.median(X_train, axis=0)
 X_train_binarizado = np.where(X_train > mediana_train, 1, 0)
 
 mediana_test = np.median(X_test, axis=0)  # Mediana por columna para el conjunto de prueba
