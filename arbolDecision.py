@@ -12,7 +12,7 @@ X = datos_final.drop(['Variedad'], axis=1)
 y = datos_final['Variedad']
 
 # 3. Dividir los datos en conjunto de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=123)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=123)
 
 # 4. Inicializar el modelo con el criterio de entropía
 dtc = DecisionTreeClassifier(criterion='entropy', random_state=42)
