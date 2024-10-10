@@ -4,7 +4,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, classification_report
 
 # 1. Importación de los datos
-datos_final = pd.read_csv('./archivos/resultado/linea2_corr_20.csv')
+datos_final = pd.read_csv('archivos/archivosRefactorizados/linea2_corr_20.csv')
 print(datos_final.shape)
 
 # 2. Dividir en predictores (X) y salida (y)
@@ -38,3 +38,4 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f'Precisión del modelo Árbol de Decisión: {accuracy * 100:.2f}%')
 
 # 11. Reporte de clasificación para ver las métricas
+print(classification_report(y_test, y_pred))
