@@ -5,7 +5,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report
 
 #Importación de los datos
-datos_final = pd.read_csv('archivos/archivosRefactorizados/linea2_corr_20.csv')
+datos_final = pd.read_csv('archivos/archivosRefactorizados/linea4_21_t.csv')
 print(datos_final.shape)
 #print(datos_final.head())
 
