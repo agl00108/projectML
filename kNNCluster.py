@@ -4,15 +4,31 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from collections import Counter
+import seaborn as sns
+import matplotlib.pyplot as plt
+from imblearn.over_sampling import SMOTE
 
 # Importación de los datos
-datos_final = pd.read_csv('archivos/archivosRefactorizados/olivo/linea4_21_t.csv')
-print(datos_final.shape)
+datos_final = pd.read_csv('archivos/archivosRefactorizados/cluster/linea4_11_clus_t.csv')
 
 # Dividir en predictores (X) y salida (y)
-X = datos_final.drop(['Variedad'], axis=1)
+X = datos_final[['cluster', 'proporcion']]
 y = datos_final['Variedad']
+print("DATOS")
+print(datos_final.head())
+#-------------------------------------------
+smt = SMOTE(random_state=123)
+X, y = smt.fit_resample(X, y) #Regenera una nueva muestra
 
+#Unión de los datos balanceados
+datos_final = pd.concat([X, y], axis=1)
+
+#Verificación 2 - balanceamiento
+ax = sns.countplot(x='Variedad', data=datos_final)
+
+#print(datos_final.Variedad.value_counts())
+#plt.show()
+#------------------------
 # Estandarizar los datos
 scaler = StandardScaler()
 X_normalizado = scaler.fit_transform(X)
@@ -32,25 +48,10 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f'Precisión del modelo KNN: {accuracy * 100:.2f}%')
 print(classification_report(y_test, y_pred))
 
+# 7. Crear un DataFrame que compare las predicciones con los valores reales
+resultados = pd.DataFrame({'Real': y_test, 'Predicción': y_pred})
 
-# Predicción de nuevos olivos
+# 8. Mostrar las primeras filas del DataFrame con las predicciones y los valores reales
+print(resultados.head())
 
-# Función para predecir la variedad mayoritaria de un nuevo olivo
-def predecir_variedad_mayoritaria(nuevo_olivo_df):
-    # Estandarizar los datos del nuevo olivo
-    nuevo_olivo_normalizado = scaler.transform(nuevo_olivo_df.drop(['Variedad'], axis=1))
-
-    # Predecir la variedad de cada clúster del nuevo olivo
-    predicciones = knn.predict(nuevo_olivo_normalizado)
-
-    # Contar las ocurrencias de cada variedad y devolver la mayoritaria
-    variedad_mayoritaria = Counter(predicciones).most_common(1)[0][0]
-
-    return variedad_mayoritaria
-
-
-# Ejemplo con nuevos datos de olivos
-nuevos_olivos_df = pd.read_csv('archivos/nuevos_olivos.csv')  # Supongamos que tienes un archivo con los nuevos olivos
-nuevos_olivos_df['Variedad_Predicha'] = nuevos_olivos_df.groupby('ID_OLIVO').apply(predecir_variedad_mayoritaria)
-
-print(nuevos_olivos_df[['ID_OLIVO', 'Variedad_Predicha']].drop_duplicates())
+resultados.to_csv('predicciones_resultados.csv', index=False)

@@ -9,7 +9,6 @@ olivo_grouped = df.pivot_table(index=['ID_OLIVO', 'Variedad'],
                                values='proporción',
                                aggfunc='sum')
 
-# Renombrar columnas para que tengan el formato "cluster_X"
 olivo_grouped.columns = [f'cluster_{int(col)}' for col in olivo_grouped.columns]
 
 # Por archivo hay que ver si algunas filas sobran
@@ -19,11 +18,7 @@ if 'cluster_21' in olivo_grouped.columns:
 #if 'cluster_11' in olivo_grouped.columns:
 #    olivo_grouped = olivo_grouped.drop(columns=['cluster_11'])
 
-
-# Restablecer el índice para que se vea como un DataFrame normal
 olivo_grouped.reset_index(inplace=True)
-
-# Guardar el archivosRefactorizados en un archivo CSV
 output_file = 'archivos/archivosRefactorizados/olivo/linea4_21_t.csv'
 olivo_grouped.to_csv(output_file, index=False)
 
