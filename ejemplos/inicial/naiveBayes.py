@@ -5,7 +5,7 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.metrics import accuracy_score, classification_report
 
 # 1. Importación de los datos
-datos_final = pd.read_csv('archivos/archivosRefactorizados/olivo/linea4_21_t.csv')
+datos_final = pd.read_csv('../../archivos/archivosRefactorizados/olivo/linea4_21_t.csv')
 print(datos_final.shape)
 
 # 2. Dividir en predictores (X) y salida (y)

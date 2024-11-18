@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from imblearn.over_sampling import SMOTE
 
 # Importación de los datos
-datos_final = pd.read_csv('archivos/archivosRefactorizados/cluster/linea4_11_clus_t.csv')
+datos_final = pd.read_csv('../../archivos/archivosRefactorizados/cluster/linea4_11_clus_t.csv')
 
 # Dividir en predictores (X) y salida (y)
 X = datos_final[['cluster', 'proporcion']]
