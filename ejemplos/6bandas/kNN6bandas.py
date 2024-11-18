@@ -8,13 +8,17 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from imblearn.over_sampling import SMOTE
 
+import os
+os.environ["LOKY_MAX_CPU_COUNT"] = "16"
+
+
 # Importación de los datos, cada una de las 6 bandas
-rango_media = pd.read_csv('../../archivos/archivosOriginales/aplicacionBandasBinaria/divisionRangos/Media.csv')
-rango_menos1 = pd.read_csv('../../archivos/archivosOriginales/aplicacionBandasBinaria/divisionRangos/Rango_menos1.csv')
-rango_menos2 = pd.read_csv('../../archivos/archivosOriginales/aplicacionBandasBinaria/divisionRangos/Rango_menos2.csv')
-rango_1 = pd.read_csv('../../archivos/archivosOriginales/aplicacionBandasBinaria/divisionRangos/Rango_1.csv')
-rango_2 = pd.read_csv('../../archivos/archivosOriginales/aplicacionBandasBinaria/divisionRangos/Rango_2.csv')
-rango_3 = pd.read_csv('../../archivos/archivosOriginales/aplicacionBandasBinaria/divisionRangos/Rango_3.csv')
+rango_media = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Media.csv')
+rango_menos1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_menos1.csv')
+rango_menos2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_menos2.csv')
+rango_1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_1.csv')
+rango_2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_2.csv')
+rango_3 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_3.csv')
 
 #-----------------------APLICACIÓN DEL MÉTODO PARA EL RANGO MEDIO----------------------------------------------------
 # Dividir en predictores (X), todos menos la variedad, id_olivo y rango y salida (Y-Variedad)
@@ -51,4 +55,4 @@ resultados = pd.DataFrame({'Real': y_test, 'Predicción': y_pred})
 # 8. Mostrar las primeras filas del DataFrame con las predicciones y los valores reales
 print(resultados.head())
 
-resultados.to_csv('predicciones_resultados_media.csv', index=False)
+#resultados.to_csv('predicciones_resultados_media.csv', index=False)
