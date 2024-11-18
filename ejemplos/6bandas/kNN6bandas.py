@@ -51,4 +51,4 @@ resultados = pd.DataFrame({'Real': y_test, 'Predicción': y_pred})
 # 8. Mostrar las primeras filas del DataFrame con las predicciones y los valores reales
 print(resultados.head())
 
-resultados.to_csv('predicciones_resultados.csv', index=False)
+resultados.to_csv('predicciones_resultados_media.csv', index=False)
