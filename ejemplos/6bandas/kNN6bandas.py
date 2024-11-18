@@ -3,6 +3,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import confusion_matrix
 from collections import Counter
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -11,8 +12,7 @@ from imblearn.over_sampling import SMOTE
 import os
 os.environ["LOKY_MAX_CPU_COUNT"] = "16"
 
-
-# Importación de los datos, cada una de las 6 bandas
+# Cargar los datos de los rangos
 rango_media = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Media.csv')
 rango_menos1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_menos1.csv')
 rango_menos2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_menos2.csv')
@@ -20,39 +20,64 @@ rango_1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_1.csv
 rango_2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_2.csv')
 rango_3 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_3.csv')
 
-#-----------------------APLICACIÓN DEL MÉTODO PARA EL RANGO MEDIO----------------------------------------------------
-# Dividir en predictores (X), todos menos la variedad, id_olivo y rango y salida (Y-Variedad)
-X = rango_media.drop(['ID_OLIVO', 'Variedad', 'Rango'], axis=1)
-y = rango_media['Variedad']
-#Para verificar cuantas hay de cada uno, si están balanceados estaría bien
-#print(rango_media.Variedad.value_counts())
+# Lista de rangos y nombres
+rangos = {
+    "Media": rango_media,
+    "Rango_menos1": rango_menos1,
+    "Rango_menos2": rango_menos2,
+    "Rango_1": rango_1,
+    "Rango_2": rango_2,
+    "Rango_3": rango_3
+}
 
-'''
-Estandarizamos los datos con StandardScaler(), estandarizar las características eliminando la media y 
-escalando a la varianza unitaria.
-'''
-scaler = StandardScaler()
-X_normalizado = scaler.fit_transform(X)
+# Crear una lista para consolidar los resultados analíticos
+resultados_analiticos = []
 
-# Dividir los datos en conjunto de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X_normalizado, y, test_size=0.25, random_state=123)
+# Iterar sobre cada rango y aplicar el modelo
+for nombre_rango, datos in rangos.items():
+    print(f"Procesando: {nombre_rango}")
 
-# Inicializar y entrenar el modelo KNN
-knn = KNeighborsClassifier(metric='euclidean')
-knn.fit(X_train, y_train)
+    # Dividir en predictores (X) y salida (y)
+    X = datos.drop(['ID_OLIVO', 'Variedad', 'Rango'], axis=1)
+    y = datos['Variedad']
 
-# Hacer predicciones en el conjunto de prueba
-y_pred = knn.predict(X_test)
+    # Estandarizar los datos
+    scaler = StandardScaler()
+    X_normalizado = scaler.fit_transform(X)
 
-# Evaluar el modelo
-accuracy = accuracy_score(y_test, y_pred)
-print(f'Precisión del modelo KNN: {accuracy * 100:.2f}%')
-print(classification_report(y_test, y_pred))
+    # Dividir los datos en conjunto de entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(X_normalizado, y, test_size=0.25, random_state=123)
 
-# 7. Crear un DataFrame que compare las predicciones con los valores reales
-resultados = pd.DataFrame({'Real': y_test, 'Predicción': y_pred})
+    # Inicializar y entrenar el modelo KNN
+    knn = KNeighborsClassifier(metric='euclidean')
+    knn.fit(X_train, y_train)
 
-# 8. Mostrar las primeras filas del DataFrame con las predicciones y los valores reales
-print(resultados.head())
+    # Hacer predicciones en el conjunto de prueba
+    y_pred = knn.predict(X_test)
 
-#resultados.to_csv('predicciones_resultados_media.csv', index=False)
+    # Evaluar el modelo
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f'Precisión del modelo KNN para {nombre_rango}: {accuracy * 100:.2f}%')
+
+    # Reporte de clasificación
+    reporte = classification_report(y_test, y_pred, output_dict=True)
+
+    # Matriz de confusión
+    matriz_confusion = confusion_matrix(y_test, y_pred)
+
+    # Preparar los datos analíticos del modelo
+    resultados_analiticos.append({
+        'Rango': nombre_rango,
+        'Precisión General': accuracy,
+        'Precisión por Clase': {key: val['precision'] for key, val in reporte.items() if key != 'accuracy'},
+        'Recall por Clase': {key: val['recall'] for key, val in reporte.items() if key != 'accuracy'},
+        'F1 por Clase': {key: val['f1-score'] for key, val in reporte.items() if key != 'accuracy'},
+        'Matriz de Confusión': matriz_confusion.tolist(),  # Convertir matriz a lista para CSV
+        'Instancias Totales': len(y_test)
+    })
+
+# Convertir los resultados a un DataFrame y guardarlo como CSV
+resultados_df = pd.json_normalize(resultados_analiticos)
+resultados_df.to_csv('resultados_analiticos_modelos.csv', index=False)
+
+print("Resultados analíticos guardados en 'resultados_analiticos_modelos.csv'.")
