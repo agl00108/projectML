@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
 
 # 1. Importación de los datos
 datos_final = pd.read_csv('../../archivos/archivosRefactorizados/olivo/linea4_21_t.csv')
