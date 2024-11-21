@@ -13,12 +13,12 @@ import os
 os.environ["LOKY_MAX_CPU_COUNT"] = "16"
 
 # Cargar los datos de los rangos
-rango_media = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Media.csv')
-rango_menos1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_menos1.csv')
-rango_menos2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_menos2.csv')
-rango_1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_1.csv')
-rango_2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_2.csv')
-rango_3 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas/Rango_3.csv')
+rango_media = pd.read_csv('../../archivos/archivosRefactorizados/6bandas_arbequina/Media.csv')
+rango_menos1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas_arbequina/Rango_menos1.csv')
+rango_menos2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas_arbequina/Rango_menos2.csv')
+rango_1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas_arbequina/Rango_1.csv')
+rango_2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas_arbequina/Rango_2.csv')
+rango_3 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas_arbequina/Rango_3.csv')
 
 # Lista de rangos y nombres
 rangos = {
