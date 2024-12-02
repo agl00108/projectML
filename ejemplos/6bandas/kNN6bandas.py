@@ -4,17 +4,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.metrics import confusion_matrix
-
 import os
+
 os.environ["LOKY_MAX_CPU_COUNT"] = "16"
 
 # Cargar los datos de los rangos
-rango_media = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Media.csv')
-rango_menos1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_menos1.csv')
-rango_menos2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_menos2.csv')
-rango_1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_1.csv')
-rango_2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_2.csv')
-rango_3 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_3.csv')
+rango_media = pd.read_csv('../../archivos/archivosRefactorizados/6bandas3-1/juntos/Media.csv')
+rango_menos1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas3-1/juntos/Rango_menos1.csv')
+rango_menos2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas3-1/juntos/Rango_menos2.csv')
+rango_1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas3-1/juntos/Rango_1.csv')
+rango_2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas3-1/juntos/Rango_2.csv')
+rango_3 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas3-1/juntos/Rango_3.csv')
 
 # Lista de rangos y nombres
 rangos = {
@@ -34,7 +34,7 @@ for nombre_rango, datos in rangos.items():
     print(f"Procesando: {nombre_rango}")
 
     # Dividir en predictores (X) y salida (y)
-    X = datos.drop(['ID_OLIVO', 'Variedad', 'Rango'], axis=1)
+    X = datos.drop(['ID_OLIVO', 'Variedad', 'Rango', 'Tipo'], axis=1)
     y = datos['Variedad']
 
     # Estandarizar los datos
@@ -74,6 +74,57 @@ for nombre_rango, datos in rangos.items():
 
 # Convertir los resultados a un DataFrame y guardarlo como CSV
 resultados_df = pd.json_normalize(resultados_analiticos)
-resultados_df.to_csv('resultados_analiticos_kNN_individual.csv', index=False)
+resultados_df.to_csv('resultados_analiticos_kNN_3-1.csv', index=False)
 
-print("Resultados analíticos guardados en 'resultados_analiticos_kNN_individual.csv'.")
+print("Resultados analíticos guardados en 'resultados_analiticos_kNN_3-1.csv'.")
+
+#-------------------------------------------- PREDICCIÓN --------------------------------------------
+# Crear un diccionario para almacenar las predicciones por rango
+predicciones_consolidadas = []
+
+# Lista de archivos CSV con los nuevos olivos por rango
+archivos_nuevos = {
+    "Media": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Media.csv',
+    "Rango_menos1": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_-1.csv',
+    "Rango_menos2": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_-2.csv',
+    "Rango_1": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_1.csv',
+    "Rango_2": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_2.csv',
+    "Rango_3": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_3.csv'
+}
+
+# Iterar sobre cada archivo y rango
+for nombre_rango, archivo in archivos_nuevos.items():
+    print(f"Procesando nuevos olivos para: {nombre_rango}")
+
+    # Cargar los datos nuevos
+    nuevos_olivos = pd.read_csv(archivo)
+
+    # Guardar la columna 'Variedad' antes de eliminarla
+    variedad_original = nuevos_olivos['Variedad']
+
+    # Preprocesar los datos nuevos (eliminar columnas innecesarias)
+    X_nuevos = nuevos_olivos.drop(['ID_OLIVO', 'Variedad', 'Rango', 'Tipo'], axis=1)
+
+    # Estandarizar los datos nuevos utilizando el scaler ajustado
+    X_nuevos_normalizado = scaler.transform(X_nuevos)  # Usar el scaler ya entrenado
+
+    # Realizar predicciones para los nuevos olivos
+    y_nuevos_pred = knn.predict(X_nuevos_normalizado)
+
+    # Crear un DataFrame temporal con las predicciones y las variedades originales
+    df_predicciones = pd.DataFrame({
+        'Rango': nombre_rango,
+        'Variedad_Original': variedad_original,
+        'Predicción': y_nuevos_pred
+    })
+
+    # Añadir al DataFrame consolidado
+    predicciones_consolidadas.append(df_predicciones)
+
+# Concatenar todas las predicciones en un único DataFrame
+predicciones_consolidadas_df = pd.concat(predicciones_consolidadas, ignore_index=True)
+
+# Guardar todas las predicciones en un archivo CSV general
+predicciones_consolidadas_df.to_csv('predicciones_con_variedad.csv', index=False)
+
+print("Todas las predicciones y variedades originales guardadas en 'predicciones_con_variedad.csv'.")

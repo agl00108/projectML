@@ -1,9 +1,43 @@
 import os
 import pandas as pd
 
+def dividir_csv_por_rango(archivo_csv, columna_rango, output_dir):
+    """
+    Divide un archivo CSV en varios archivos según los valores únicos en una columna de rango.
+
+    Args:
+        archivo_csv (str): Ruta del archivo CSV de entrada.
+        columna_rango (str): Nombre de la columna que contiene los rangos.
+        output_dir (str): Ruta del directorio donde se guardarán los archivos generados.
+
+    Returns:
+        None
+    """
+    # Leer el archivo CSV
+    df = pd.read_csv(archivo_csv)
+
+    # Crear el directorio de salida si no existe
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Obtener los valores únicos de la columna de rango
+    rangos_unicos = df[columna_rango].unique()
+
+    # Generar un archivo CSV por cada rango
+    for rango in rangos_unicos:
+        # Filtrar las filas que corresponden al rango actual
+        df_rango = df[df[columna_rango] == rango]
+
+        # Crear el nombre del archivo con base en el rango
+        nombre_rango = rango.split('/')[0].strip()  # Usar solo la primera parte del rango
+        nombre_archivo_csv = os.path.join(output_dir, f"{nombre_rango.replace(' ', '_')}.csv")
+
+        # Guardar el dataframe filtrado en un archivo CSV
+        df_rango.to_csv(nombre_archivo_csv, index=False)
+        print(f"Archivo creado: {nombre_archivo_csv}")
+
 # Crear el directorio si no existe
 output_dir = "../../archivos/archivosRefactorizados/6bandas3-1"
-"""
+
 os.makedirs(output_dir, exist_ok=True)
 
 # PRIMER PASO: Filtrar y procesar los datos originales
@@ -60,42 +94,8 @@ for rango in rangos_unicos:
     nombre_archivo_csv = os.path.join(output_dir, f"{nombre_rango}.csv")
     df_rango.to_csv(nombre_archivo_csv, index=False)
     print(f'Archivo creado: {nombre_archivo_csv}')
-"""
-def dividir_csv_por_rango(archivo_csv, columna_rango, output_dir):
-    """
-    Divide un archivo CSV en varios archivos según los valores únicos en una columna de rango.
-
-    Args:
-        archivo_csv (str): Ruta del archivo CSV de entrada.
-        columna_rango (str): Nombre de la columna que contiene los rangos.
-        output_dir (str): Ruta del directorio donde se guardarán los archivos generados.
-
-    Returns:
-        None
-    """
-    # Leer el archivo CSV
-    df = pd.read_csv(archivo_csv)
-
-    # Crear el directorio de salida si no existe
-    os.makedirs(output_dir, exist_ok=True)
-
-    # Obtener los valores únicos de la columna de rango
-    rangos_unicos = df[columna_rango].unique()
-
-    # Generar un archivo CSV por cada rango
-    for rango in rangos_unicos:
-        # Filtrar las filas que corresponden al rango actual
-        df_rango = df[df[columna_rango] == rango]
-
-        # Crear el nombre del archivo con base en el rango
-        nombre_rango = rango.split('/')[0].strip()  # Usar solo la primera parte del rango
-        nombre_archivo_csv = os.path.join(output_dir, f"{nombre_rango.replace(' ', '_')}.csv")
-
-        # Guardar el dataframe filtrado en un archivo CSV
-        df_rango.to_csv(nombre_archivo_csv, index=False)
-        print(f"Archivo creado: {nombre_archivo_csv}")
 
 archivo="../../archivos/archivosRefactorizados/6bandas3-1/individual_ar.csv"
 columna = "Rango"
 directorio_salida = output_dir
-dividir_csv_por_rango(archivo, columna, directorio_salida)
+#dividir_csv_por_rango(archivo, columna, directorio_salida)
