@@ -108,9 +108,10 @@ for nombre_rango, archivo in archivos_nuevos.items():
 
     # Crear un DataFrame temporal con las predicciones y las variedades originales
     df_predicciones = pd.DataFrame({
+        'ID_OLIVO': nuevos_olivos['ID_OLIVO'],
         'Rango': nombre_rango,
-        'Variedad_Original': variedad_original,
-        'Predicción': y_nuevos_pred
+        'Predicción': y_nuevos_pred,
+        'Variedad_Original': variedad_original
     })
 
     # Añadir al DataFrame consolidado

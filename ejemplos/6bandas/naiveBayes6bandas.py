@@ -101,6 +101,9 @@ for nombre_rango, archivo in archivos_nuevos.items():
     # Cargar los datos nuevos
     nuevos_olivos = pd.read_csv(archivo)
 
+    # Guardar la columna 'Variedad' antes de eliminarla
+    variedad_original = nuevos_olivos['Variedad']
+
     # Preprocesar los datos nuevos (eliminar columnas innecesarias)
     X_nuevos = nuevos_olivos.drop(['ID_OLIVO', 'Variedad', 'Rango', 'Tipo'], axis=1)
 
@@ -114,7 +117,8 @@ for nombre_rango, archivo in archivos_nuevos.items():
     df_predicciones = pd.DataFrame({
         'ID_OLIVO': nuevos_olivos['ID_OLIVO'],
         'Rango': nombre_rango,
-        'Predicción_Variedad': y_nuevos_pred
+        'Predicción': y_nuevos_pred,
+        'Variedad_Original': variedad_original,
     })
 
     # Añadir al DataFrame consolidado
