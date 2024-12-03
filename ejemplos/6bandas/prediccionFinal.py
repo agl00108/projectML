@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Cargar los datos desde el CSV
-df = pd.read_csv('../6bandas/resultados/resultados3-1/naiveBayes/predicciones_con_variedad_naive_bayes.csv')
+df = pd.read_csv('../6bandas/resultados/resultados3-1/kNN/predicciones_con_variedad_kNN.csv')
 
 # Función para calcular la predicción final
 def calcular_prediccion_final(predicciones):
@@ -36,6 +36,6 @@ resumen_fila = pd.DataFrame([['RESUMEN DE RESULTADOS', '', '', '']], columns=df.
 df_final = pd.concat([df, resumen_fila, resultados], ignore_index=True)
 
 # Guardar los resultados en el mismo archivo CSV
-df_final.to_csv('../6bandas/resultados/resultados3-1/naiveBayes/predicciones_con_variedad_naive_bayes.csv', index=False)
+df_final.to_csv('../6bandas/resultados/resultados3-1/kNN/predicciones_con_variedad_kNN.csv', index=False)
 
 print("Predicciones finales añadidas al CSV original.")
