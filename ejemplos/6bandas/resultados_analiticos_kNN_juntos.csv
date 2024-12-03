@@ -1,0 +1,7 @@
+Rango,Precisión General,Matriz de Confusión,Instancias Totales,Precisión por Clase.AR,Precisión por Clase.NO AR,Precisión por Clase.macro avg,Precisión por Clase.weighted avg,Recall por Clase.AR,Recall por Clase.NO AR,Recall por Clase.macro avg,Recall por Clase.weighted avg,F1 por Clase.AR,F1 por Clase.NO AR,F1 por Clase.macro avg,F1 por Clase.weighted avg
+Media,1.0,"[[92, 0], [0, 84]]",176,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Rango_menos1,1.0,"[[86, 0], [0, 95]]",181,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Rango_menos2,1.0,"[[95, 0], [0, 85]]",180,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Rango_1,1.0,"[[83, 0], [0, 92]]",175,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Rango_2,1.0,"[[88, 0], [0, 90]]",178,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Rango_3,1.0,"[[86, 0], [0, 83]]",169,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
