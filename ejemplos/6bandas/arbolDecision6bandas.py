@@ -9,12 +9,12 @@ import os
 os.environ["LOKY_MAX_CPU_COUNT"] = "16"
 
 # Cargar los datos de los rangos
-rango_media = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Media.csv')
-rango_menos1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_menos1.csv')
-rango_menos2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_menos2.csv')
-rango_1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_1.csv')
-rango_2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_2.csv')
-rango_3 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-individual/Rango_3.csv')
+rango_media = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-juntos/olivos/Media.csv')
+rango_menos1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-juntos/olivos/Rango_menos1.csv')
+rango_menos2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-juntos/olivos/Rango_menos2.csv')
+rango_1 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-juntos/olivos/Rango_1.csv')
+rango_2 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-juntos/olivos/Rango_2.csv')
+rango_3 = pd.read_csv('../../archivos/archivosRefactorizados/6bandas-juntos/olivos/Rango_3.csv')
 
 # Lista de rangos y nombres
 rangos = {
@@ -82,12 +82,12 @@ predicciones_consolidadas = []
 
 # Lista de archivos CSV con los nuevos olivos por rango
 archivos_nuevos = {
-    "Media": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Media.csv',
-    "Rango_menos1": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_-1.csv',
-    "Rango_menos2": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_-2.csv',
-    "Rango_1": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_1.csv',
-    "Rango_2": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_2.csv',
-    "Rango_3": '../../archivos/archivosRefactorizados/6bandas3-1/olivosep/Rango_3.csv'
+    "Media": '../../archivos/archivosRefactorizados/6bandas-juntos/individual/Media.csv',
+    "Rango_menos1": '../../archivos/archivosRefactorizados/6bandas-juntos/individual/Rango_menos1.csv',
+    "Rango_menos2": '../../archivos/archivosRefactorizados/6bandas-juntos/individual/Rango_menos2.csv',
+    "Rango_1": '../../archivos/archivosRefactorizados/6bandas-juntos/individual/Rango_1.csv',
+    "Rango_2": '../../archivos/archivosRefactorizados/6bandas-juntos/individual/Rango_2.csv',
+    "Rango_3": '../../archivos/archivosRefactorizados/6bandas-juntos/individual/Rango_3.csv'
 }
 
 # Iterar sobre cada archivo y rango
@@ -101,7 +101,7 @@ for nombre_rango, archivo in archivos_nuevos.items():
     variedad_original = nuevos_olivos['Variedad']
 
     # Preprocesar los datos nuevos (eliminar columnas innecesarias)
-    X_nuevos = nuevos_olivos.drop(['ID_OLIVO', 'Variedad', 'Rango', 'Tipo'], axis=1)
+    X_nuevos = nuevos_olivos.drop(['ID_OLIVO', 'Variedad', 'Rango'], axis=1)
 
     # Realizar predicciones para los nuevos olivos
     y_nuevos_pred = dtc.predict(X_nuevos)
