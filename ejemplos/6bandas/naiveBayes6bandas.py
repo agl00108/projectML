@@ -129,6 +129,6 @@ for nombre_rango, archivo in archivos_nuevos.items():
 predicciones_consolidadas_df = pd.concat(predicciones_consolidadas, ignore_index=True)
 
 # Guardar todas las predicciones en un archivo CSV general
-predicciones_consolidadas_df.to_csv('predicciones_con_variedad_kNN.csv', index=False)
+predicciones_consolidadas_df.to_csv('predicciones_con_variedad_naiveBayes.csv', index=False)
 
-print("Todas las predicciones guardadas en 'predicciones_con_variedad_kNN.csv'.")
+print("Todas las predicciones guardadas en 'predicciones_con_variedad_naiveBayes.csv'.")
