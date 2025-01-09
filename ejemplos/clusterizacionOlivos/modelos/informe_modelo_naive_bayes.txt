@@ -1,82 +1,82 @@
-Informe del Modelo KNN
+Informe del Modelo Naive Bayes
 ========================================
-Precisión del modelo KNN: 56.25%
+Precisión del modelo Naive Bayes: 54.69%
 
 Clasificación Completa:
               precision    recall  f1-score   support
 
-          AR       0.50      0.71      0.59        28
-       NO AR       0.67      0.44      0.53        36
+          AR       0.49      0.68      0.57        28
+       NO AR       0.64      0.44      0.52        36
 
-    accuracy                           0.56        64
-   macro avg       0.58      0.58      0.56        64
-weighted avg       0.59      0.56      0.56        64
+    accuracy                           0.55        64
+   macro avg       0.56      0.56      0.55        64
+weighted avg       0.57      0.55      0.54        64
 
 Matriz de Confusión:
-[[20  8]
+[[19  9]
  [20 16]]
 Comparación de Predicciones en el Conjunto de Prueba:
  Real Predicción
-NO AR      NO AR
-   AR         AR
 NO AR         AR
-NO AR      NO AR
-NO AR      NO AR
-NO AR      NO AR
    AR      NO AR
 NO AR      NO AR
-   AR         AR
-   AR         AR
-NO AR      NO AR
 NO AR         AR
 NO AR      NO AR
-   AR         AR
 NO AR         AR
    AR      NO AR
 NO AR         AR
    AR         AR
    AR         AR
-NO AR         AR
-   AR         AR
-   AR         AR
-NO AR      NO AR
-   AR         AR
-   AR         AR
-NO AR         AR
-NO AR      NO AR
-   AR         AR
 NO AR      NO AR
 NO AR      NO AR
-NO AR         AR
-NO AR      NO AR
-NO AR      NO AR
-NO AR         AR
-   AR         AR
-NO AR      NO AR
-NO AR      NO AR
-NO AR         AR
-NO AR         AR
-NO AR         AR
-NO AR         AR
-   AR         AR
-   AR      NO AR
-NO AR         AR
 NO AR         AR
    AR      NO AR
-   AR         AR
-   AR      NO AR
-NO AR         AR
-NO AR         AR
-NO AR         AR
-   AR         AR
-NO AR         AR
-   AR         AR
-   AR         AR
+NO AR      NO AR
    AR         AR
 NO AR         AR
    AR         AR
    AR      NO AR
 NO AR         AR
+   AR         AR
+   AR         AR
+NO AR         AR
+   AR         AR
+   AR         AR
+NO AR         AR
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+NO AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR         AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR         AR
+NO AR         AR
+NO AR         AR
+NO AR         AR
+   AR      NO AR
+   AR      NO AR
+NO AR      NO AR
+NO AR         AR
+   AR         AR
+   AR      NO AR
+   AR         AR
+NO AR         AR
+NO AR         AR
+NO AR         AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+   AR         AR
+NO AR         AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
    AR         AR
 NO AR      NO AR
    AR      NO AR
@@ -85,12 +85,12 @@ Predicciones en los Datos Nuevos:
 Variedad Real Predicción
            AR         AR
            AR         AR
+           AR         AR
            AR      NO AR
            AR         AR
-           AR         AR
+        NO AR      NO AR
+        NO AR      NO AR
+        NO AR      NO AR
         NO AR         AR
-        NO AR      NO AR
-        NO AR      NO AR
         NO AR         AR
-        NO AR      NO AR
 Informe generado correctamente.

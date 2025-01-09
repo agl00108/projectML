@@ -11,11 +11,11 @@ os.environ["LOKY_MAX_CPU_COUNT"] = "4"
 datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModelo.csv')
 datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPrueba.csv')
 
-X = datos_final.drop(columns=['Variedad'])
+X = datos_final.drop(columns=['IDENTIFICADOR','Variedad'])
 y = datos_final['Variedad']
 num_pixeles = datos_final['num_pixeles']
 
-X_nuevos = datos_nuevos.drop(columns=['Variedad'])
+X_nuevos = datos_nuevos.drop(columns=['IDENTIFICADOR','Variedad'])
 y_nuevos = datos_nuevos['Variedad']
 
 scaler = StandardScaler()

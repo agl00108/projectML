@@ -12,10 +12,10 @@ datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizaci
 datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPrueba.csv')
 
 # Dividir en predictores (X), salida (y) y 'num_pixeles'
-X = datos_final.drop(columns=['Variedad', 'num_pixeles'])
+X = datos_final.drop(columns=['IDENTIFICADOR','Variedad', 'num_pixeles'])
 y = datos_final['Variedad']
 
-X_nuevos = datos_nuevos.drop(columns=['Variedad', 'num_pixeles'])
+X_nuevos = datos_nuevos.drop(columns=['IDENTIFICADOR','Variedad', 'num_pixeles'])
 y_nuevos = datos_nuevos['Variedad']
 
 # Estandarizar los datos
@@ -44,7 +44,7 @@ X_nuevos_normalizado = scaler.transform(X_nuevos)
 y_pred_nuevos = knn.predict(X_nuevos_normalizado)
 
 # Crear el contenido para el archivo .txt
-with open('informe_modelo.txt', 'w') as f:
+with open('informe_modelo_kNN.txt', 'w') as f:
     f.write("Informe del Modelo KNN\n")
     f.write("=" * 40 + "\n")
 
