@@ -1,0 +1,91 @@
+Precisión del modelo Árbol de Decisión: 100.00%
+
+Clasificación Completa:
+              precision    recall  f1-score   support
+
+          AR       1.00      1.00      1.00        28
+       NO AR       1.00      1.00      1.00        36
+
+    accuracy                           1.00        64
+   macro avg       1.00      1.00      1.00        64
+weighted avg       1.00      1.00      1.00        64
+
+Comparación de Predicciones en el Conjunto de Prueba:
+ Real Predicción
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+Predicciones en los Datos Nuevos:
+Variedad Real Predicción
+           AR         AR
+           AR         AR
+           AR         AR
+           AR         AR
+           AR         AR
+        NO AR      NO AR
+        NO AR      NO AR
+        NO AR      NO AR
+        NO AR      NO AR
+        NO AR      NO AR
+Informe generado correctamente.
