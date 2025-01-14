@@ -48,25 +48,17 @@ def mostrar_resultados(y_true, y_pred, loss, accuracy, nombre_modelo, y_pred_pro
     plt.show()
 
 
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+import numpy as np
+
 def preparar_datos(df):
     # Separar las características (bandas espectrales) y el objetivo (Variedad)
     X = df.iloc[:, 3:].values  # Usar solo las bandas espectrales como características
-    y = df['Variedad'].values  # La variable objetivo es la columna 'Variedad'
-
-    # Convertir la variable objetivo a One-Hot Encoding
-    encoder = OneHotEncoder(sparse_output=False, categories=[['AR', 'NO AR']])
-    y = encoder.fit_transform(y.reshape(-1, 1))
+    y = df['Variedad'].apply(lambda x: 0 if x == 'AR' else 1).values  # Convertir 'AR' -> 0 y 'NO AR' -> 1
 
     # Dividir los datos en conjuntos de entrenamiento y prueba
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    print("Primeras filas de X_train:")
-    print(X_train[:5])  # Imprimir las primeras 5 filas de X_train
-    print("Forma de X_train:", X_train.shape)
-
-    print("Primeras filas de y_train:")
-    print(y_train[:5])  # Imprimir las primeras 5 filas de y_train
-    print("Forma de y_train:", y_train.shape)
 
     # Redimensionar X para que sea compatible con Conv1D (se requiere un formato 3D)
     X_train = X_train.reshape(X_train.shape[0], X_train.shape[1], 1)
@@ -99,10 +91,10 @@ def ejecutar_cnn(df):
     model.add(Dropout(DROPOUT_RATE))
     model.add(Dense(FF_DIM, activation="relu"))
     model.add(Dropout(DROPOUT_RATE))
-    model.add(Dense(2, activation="softmax"))
+    model.add(Dense(1, activation="sigmoid"))
 
     # Compilar el modelo
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     # Early stopping
     early_stopping = EarlyStopping(monitor='val_accuracy', patience=PATIENCE, restore_best_weights=True)
@@ -123,8 +115,8 @@ def ejecutar_cnn(df):
     # Evaluar el modelo
     loss, accuracy = model.evaluate(X_test, y_test)
     y_pred_prob = model.predict(X_test)
-    y_pred = np.argmax(y_pred_prob, axis=1)
-    y_true = np.argmax(y_test, axis=1)
+    y_pred = (y_pred_prob > 0.4).astype("int32")  # Predicción binaria para clasificación binaria
+    y_true = y_test  # No es necesario aplicar np.argmax()
 
     nombre_modelo = "CNN"
     mostrar_resultados(y_true, y_pred, loss, accuracy, nombre_modelo, y_pred_prob, y_test)
