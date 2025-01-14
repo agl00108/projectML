@@ -23,13 +23,17 @@ X_train, X_test, y_train, y_test, weights_train, weights_test = train_test_split
     X, y_encoded, sample_weights, test_size=0.3, random_state=42
 )
 
+# Sin sample weights probar
+#X_train, X_test, y_train, y_test = train_test_split(  X, y_encoded, test_size=0.3, random_state=42)
+
 # Crear y ajustar el clasificador MLP con parámetros optimizados
-mlp = MLPClassifier(
-    hidden_layer_sizes=(200, 100, 50), # Cambiamos la arquitectura
+mlp = MLPClassifier(activation='identity',  # Función de activación tangente hiperbólica
+    hidden_layer_sizes=(64,), # Cambiamos la arquitectura
     max_iter=1000,                     # Aumentamos el número de iteraciones
     learning_rate_init=0.001,          # Ajustamos la tasa de aprendizaje
     alpha=0.0001,                      # Regularización L2
-    random_state=42
+    random_state=42,
+    solver='adam',                     # Optimizador Adam
 )
 mlp.fit(X_train, y_train)
 
