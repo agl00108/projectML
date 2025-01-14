@@ -19,7 +19,6 @@ BATCH_SIZE = 32        # El tamaño de lote de 32 es un valor comúnmente utiliz
 EPOCHS = 50            # Está bien mantener 50 épocas, aunque dependiendo del comportamiento del modelo, podrías ajustar este número.
 FILTERS = 32           # Reducir el número de filtros a 32 en las primeras capas para evitar un modelo demasiado complejo en las primeras etapas.
 KERNEL_SIZE = 3       # Mantén el tamaño del kernel en 3, que es una opción estándar para tareas de clasificación de series temporales o datos 1D.
-DROPOUT_RATE = 0.4     # Disminuir el dropout de 0.5 a 0.4, ya que un valor más alto puede eliminar demasiado de la información útil.
 FF_DIM = 64            # Reducir la dimensión de la capa densa a 64 para evitar que el modelo se haga demasiado grande y se sobreajuste.
 PATIENCE = 5           # Early stopping sea más sensible y detenga el entrenamiento antes si no mejora.
 
@@ -80,9 +79,11 @@ def ejecutar_cnn(df):
     # Definir el modelo CNN (Convolutional Neural Network)
     model = Sequential()
     model.add(Input(shape=(X_train.shape[1], X_train.shape[2])))  # Capa de entrada, forma: (n_samples, n_features, 1)
-    model.add(Conv1D(filters=16, kernel_size=3, activation='relu'))  # Primera capa Conv1D con 16 filtros y función de activación ReLU
+    model.add(Conv1D(filters=16, kernel_size=3, activation='elu'))
     model.add(MaxPooling1D(pool_size=POOL_SIZE))  # MaxPooling1D para reducir la dimensionalidad
-    model.add(Conv1D(filters=32, kernel_size=3, activation='relu'))  # Segunda capa Conv1D con 32 filtros
+    model.add(Conv1D(filters=32, kernel_size=3, activation='elu'))
+    model.add(Conv1D(filters=64, kernel_size=3, activation='elu'))
+    model.add(Conv1D(filters=128, kernel_size=3, activation='elu'))
     model.add(MaxPooling1D(pool_size=POOL_SIZE))  # MaxPooling adicional
     model.add(Flatten())  # Aplanar la salida para pasar a las capas densas
     model.add(Dense(FF_DIM, activation='relu'))  # Capa densa con 64 unidades y activación ReLU
