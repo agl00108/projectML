@@ -38,7 +38,7 @@ X_nuevos_binarizado = (X_nuevos > mediana_train).astype(int)
 y_pred_nuevos = bnb.predict(X_nuevos_binarizado)
 
 # Generar el informe del modelo
-with open('informe_modelo_naive_bayes.txt', 'w') as f:
+with open('informes/informe_modelo_naive_bayes.txt', 'w') as f:
     f.write("Informe del Modelo Naive Bayes\n")
     f.write("=" * 40 + "\n")
 

@@ -39,7 +39,7 @@ y_pred_nuevos = tree.predict(X_nuevos_normalizado)
 resultados_nuevos = pd.DataFrame({'Variedad Real': y_nuevos, 'Predicción': y_pred_nuevos})
 
 
-with open('informe_arbol.txt', 'w') as f:
+with open('informes/informe_arbol.txt', 'w') as f:
     f.write(f"Precisión del modelo Árbol de Decisión: {accuracy * 100:.2f}%\n")
     f.write("\nClasificación Completa:\n")
     f.write(classification_report(y_test, y_pred))

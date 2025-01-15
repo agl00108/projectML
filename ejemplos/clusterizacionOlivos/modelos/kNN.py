@@ -44,7 +44,7 @@ X_nuevos_normalizado = scaler.transform(X_nuevos)
 y_pred_nuevos = knn.predict(X_nuevos_normalizado)
 
 # Crear el contenido para el archivo .txt
-with open('informe_modelo_kNN.txt', 'w') as f:
+with open('informes/informe_modelo_kNN.txt', 'w') as f:
     f.write("Informe del Modelo KNN\n")
     f.write("=" * 40 + "\n")
 
