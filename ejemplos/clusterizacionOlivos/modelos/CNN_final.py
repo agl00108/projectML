@@ -16,8 +16,7 @@ import seaborn as sns
 POOL_SIZE = 3
 BATCH_SIZE = 32
 EPOCHS = 50
-FILTERS = 32
-KERNEL_SIZE = 3
+KERNEL_SIZE = 4
 FF_DIM = 64
 PATIENCE = 10
 
@@ -68,11 +67,11 @@ def ejecutar_cnn(df):
 
     model = Sequential()
     model.add(Input(shape=(X_train.shape[1], X_train.shape[2])))
-    model.add(Conv1D(filters=16, kernel_size=3, activation='elu'))
+    model.add(Conv1D(filters=16, kernel_size=KERNEL_SIZE, activation='elu'))
     model.add(MaxPooling1D(pool_size=POOL_SIZE))
-    model.add(Conv1D(filters=32, kernel_size=3, activation='elu'))
-    model.add(Conv1D(filters=64, kernel_size=3, activation='elu'))
-    model.add(Conv1D(filters=128, kernel_size=3, activation='elu'))
+    model.add(Conv1D(filters=32, kernel_size=KERNEL_SIZE, activation='elu'))
+    model.add(Conv1D(filters=64, kernel_size=KERNEL_SIZE, activation='elu'))
+    model.add(Conv1D(filters=128, kernel_size=KERNEL_SIZE, activation='elu'))
     model.add(MaxPooling1D(pool_size=POOL_SIZE))
     model.add(Flatten())
     model.add(Dense(FF_DIM, activation='relu'))
@@ -106,7 +105,7 @@ def ejecutar_cnn(df):
 
     return model, scaler  # Devolver el modelo y el scaler
 
-# Cargar los datos desde un archivo CSV
+# PREDICCIÓN DE DATOS NUEVOS
 data = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModelo.csv')
 
 # Ejecutar el modelo CNN y obtener el modelo entrenado y el escalador
