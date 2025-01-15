@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Definir las constantes para los parámetros del modelo
-POOL_SIZE = 2
+POOL_SIZE = 3
 BATCH_SIZE = 32
 EPOCHS = 50
 FILTERS = 32
