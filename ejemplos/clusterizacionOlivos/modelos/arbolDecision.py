@@ -7,8 +7,8 @@ import os
 
 os.environ["LOKY_MAX_CPU_COUNT"] = "4"
 
-datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModelo.csv')
-datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPrueba.csv')
+datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloArbequina.csv')
+datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaArbequina.csv')
 
 X = datos_final.drop(columns=['IDENTIFICADOR','Variedad'])
 y = datos_final['Variedad']

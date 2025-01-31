@@ -85,6 +85,7 @@ def ejecutar_cnn(df):
                         validation_data=(X_test, y_test), callbacks=[early_stopping])
 
     plt.plot(history.history['accuracy'])
+    plt.plot(history.history['accuracy'])
     plt.plot(history.history['val_accuracy'])
     plt.title('Accuracy over epochs')
     plt.xlabel('Epoch')
@@ -106,7 +107,7 @@ def ejecutar_cnn(df):
     return model, scaler  # Devolver el modelo y el scaler
 
 # PREDICCIÓN DE DATOS NUEVOS
-data = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModelo.csv')
+data = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloArbequina.csv')
 
 # Ejecutar el modelo CNN y obtener el modelo entrenado y el escalador
 model, scaler = ejecutar_cnn(data)
@@ -141,7 +142,7 @@ def comprobar_nuevos_datos(model, nuevos_datos, scaler):
     plt.show()
 
 # Cargar los nuevos datos desde un archivo CSV
-nuevos_datos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPrueba.csv')
+nuevos_datos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaArbequina.csv')
 
 # Preprocesar y comprobar los nuevos datos con el modelo entrenado
 comprobar_nuevos_datos(model, nuevos_datos, scaler)

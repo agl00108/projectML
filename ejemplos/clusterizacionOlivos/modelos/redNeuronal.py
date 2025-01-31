@@ -5,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import classification_report
 
 # Cargar los datos
-data = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModelo.csv')
+data = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloArbequina.csv')
 
 # Seleccionar las bandas espectrales como características (X) y la variedad como objetivo (y)
 X = data.iloc[:, 3:]  # Usar solo las bandas espectrales como características

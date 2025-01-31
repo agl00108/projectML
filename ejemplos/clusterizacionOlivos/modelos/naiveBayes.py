@@ -5,8 +5,8 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 # Cargar los datos
-datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModelo.csv')
-datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPrueba.csv')
+datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloArbequina.csv')
+datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaArbequina.csv')
 
 # Separar características y la variable objetivo
 X = datos_final.drop(['IDENTIFICADOR','Variedad', 'num_pixeles'], axis=1)
