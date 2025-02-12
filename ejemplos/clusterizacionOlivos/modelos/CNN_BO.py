@@ -33,7 +33,7 @@ def preparar_datos(df):
     return X_train, X_test, y_train, y_test
 
 # Definir la función objetivo para la optimización bayesiana
-def cnn_optimizable(filters_1, filters_2, filters_3, filters_4, kernel_size, ff_dim, dropout_rate):
+def cnn_optimizable(filters_1, filters_2, filters_3, filters_4, kernel_size, ff_dim):
     establecer_semilla()
 
     # Preparar los datos
@@ -50,7 +50,6 @@ def cnn_optimizable(filters_1, filters_2, filters_3, filters_4, kernel_size, ff_
     model.add(MaxPooling1D(pool_size=3))
     model.add(Flatten())
     model.add(Dense(int(ff_dim), activation='relu'))
-    model.add(Dropout(dropout_rate))
     model.add(Dense(1, activation='sigmoid'))
 
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -74,7 +73,6 @@ pbounds = {
     'filters_4': (110, 130),
     'kernel_size': (2, 5),
     'ff_dim': (32, 70),
-    'dropout_rate': (0.0, 0.5)
 }
 
 optimizer = BayesianOptimization(

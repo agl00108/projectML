@@ -18,16 +18,29 @@ BATCH_SIZE = 32
 EPOCHS = 50
 PATIENCE = 10
 
-# Mejores parámetros obtenidos
+# Mejores parámetros obtenidos ARBEQUINA
 best_params = {
     'dropout_rate': 0.35483380605435355,
-    'ff_dim': 55.99681409968073,
-    'filters_1': 18.017624178380828,
-    'filters_2': 31.7391777595531,
-    'filters_3': 72.67157395019049,
-    'filters_4': 114.31192330114831,
+    'ff_dim': 60.67277126328847,
+    'filters_1': 15.367495896857902,
+    'filters_2': 31.218256274904483,
+    'filters_3': 65.456323876404326,
+    'filters_4': 1325.51251994102324,
+    'kernel_size': 3.990006256681035
+}
+
+# Mejores parámetros obtenidos PICUAL
+'''
+best_params = {
+    'dropout_rate': 0.35483380605435355,
+    'ff_dim': 59.99681409968073,
+    'filters_1': 14.017624178380828,
+    'filters_2': 29.7391777595531,
+    'filters_3': 60.67157395019049,
+    'filters_4': 111.31192330114831,
     'kernel_size': 4.880006256681035
 }
+'''
 
 # Función para establecer la semilla
 def establecer_semilla(seed=1234):
@@ -46,15 +59,16 @@ def mostrar_resultados(y_true, y_pred, loss, accuracy, nombre_modelo, y_pred_pro
     cm = confusion_matrix(y_true, y_pred)
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
-    plt.title(f'Matriz de confusión - {nombre_modelo}')
-    plt.xlabel('Predicciones')
-    plt.ylabel('Valores reales')
+    plt.title(f'Confusion Matrix - {nombre_modelo}')
+    plt.xlabel('Predictions')
+    plt.ylabel('Real Values')
     plt.show()
 
 # Función para preparar los datos
 def preparar_datos(df):
     X = df.iloc[:, 3:].values
-    y = df['Variedad'].apply(lambda x: 0 if x == 'PI' else 1).values
+    y = df['Variedad'].apply(lambda x: 0 if x == 'AR' else 1).values
+    #y = df['Variedad'].apply(lambda x: 0 if x == 'PI' else 1).values
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -84,7 +98,7 @@ def ejecutar_cnn(df):
     model.add(MaxPooling1D(pool_size=POOL_SIZE))
     model.add(Flatten())
     model.add(Dense(int(best_params['ff_dim']), activation='relu'))
-    #model.add(Dropout(best_params['dropout_rate']))
+    model.add(Dropout(best_params['dropout_rate']))
     model.add(Dense(1, activation='sigmoid'))
 
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -102,6 +116,29 @@ def ejecutar_cnn(df):
     plt.legend(['Train', 'Test'])
     plt.show()
 
+    # Graficar precisión y pérdida
+    plt.figure(figsize=(12, 5))
+
+    # Subplot para la precisión
+    plt.subplot(1, 2, 1)
+    plt.plot(history.history['accuracy'], label='Train Accuracy', color='blue')
+    plt.plot(history.history['val_accuracy'], label='Test Accuracy', color='orange')
+    plt.title('Accuracy through the epochs')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy')
+    plt.legend()
+
+    # Subplot para la pérdida
+    plt.subplot(1, 2, 2)
+    plt.plot(history.history['loss'], label='Train Loss', color='red')
+    plt.plot(history.history['val_loss'], label='Test Loss', color='green')
+    plt.title('Loss through the epochs')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss (MSE)')
+    plt.legend()
+
+    plt.show()
+
     loss, accuracy = model.evaluate(X_test, y_test)
     y_pred_prob = model.predict(X_test)
     y_pred = (y_pred_prob > 0.5).astype("int32")
@@ -116,7 +153,8 @@ def ejecutar_cnn(df):
     return model, scaler  # Devolver el modelo y el scaler
 
 # PREDICCIÓN DE DATOS NUEVOS
-data = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloPicual.csv')
+data = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloArbequina.csv')
+#data = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloPicual.csv')
 
 # Ejecutar el modelo CNN y obtener el modelo entrenado y el escalador
 model, scaler = ejecutar_cnn(data)
@@ -124,6 +162,7 @@ model, scaler = ejecutar_cnn(data)
 # Función para preprocesar nuevos datos y realizar predicciones
 def comprobar_nuevos_datos(model, nuevos_datos, scaler):
     X_nuevos = nuevos_datos.iloc[:, 3:].values
+    #y_nuevos = nuevos_datos['Variedad'].apply(lambda x: 0 if x == 'AR' else 1).values
     y_nuevos = nuevos_datos['Variedad'].apply(lambda x: 0 if x == 'PI' else 1).values
 
     X_nuevos = X_nuevos.reshape(X_nuevos.shape[0], X_nuevos.shape[1], 1)
@@ -145,13 +184,14 @@ def comprobar_nuevos_datos(model, nuevos_datos, scaler):
     cm = confusion_matrix(y_nuevos, y_pred)
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
-    plt.title('Matriz de confusión - Nuevos datos')
-    plt.xlabel('Predicciones')
-    plt.ylabel('Valores reales')
+    plt.title('Confusion Matrix - New Data')
+    plt.xlabel('Predictions')
+    plt.ylabel('Real Values')
     plt.show()
 
 # Cargar los nuevos datos desde un archivo CSV
-nuevos_datos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaPicual.csv')
+nuevos_datos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaArbequina.csv')
+#nuevos_datos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaPicual.csv')
 
 # Preprocesar y comprobar los nuevos datos con el modelo entrenado
 comprobar_nuevos_datos(model, nuevos_datos, scaler)

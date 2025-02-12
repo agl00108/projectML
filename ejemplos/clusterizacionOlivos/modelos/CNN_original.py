@@ -37,9 +37,9 @@ def mostrar_resultados(y_true, y_pred, loss, accuracy, nombre_modelo, y_pred_pro
     cm = confusion_matrix(y_true, y_pred)
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
-    plt.title(f'Matriz de confusión - {nombre_modelo}')
-    plt.xlabel('Predicciones')
-    plt.ylabel('Valores reales')
+    plt.title(f'Confusion Matrix - {nombre_modelo}')
+    plt.xlabel('Predictions')
+    plt.ylabel('Real Values')
     plt.show()
 
 # Función para preparar los datos
