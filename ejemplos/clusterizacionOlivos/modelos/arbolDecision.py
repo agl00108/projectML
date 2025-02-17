@@ -7,8 +7,8 @@ import os
 
 os.environ["LOKY_MAX_CPU_COUNT"] = "4"
 
-datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloArbequina.csv')
-datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaArbequina.csv')
+datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloPicual.csv')
+datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaPicual.csv')
 
 X = datos_final.drop(columns=['IDENTIFICADOR','Variedad'])
 y = datos_final['Variedad']
@@ -39,7 +39,7 @@ y_pred_nuevos = tree.predict(X_nuevos_normalizado)
 resultados_nuevos = pd.DataFrame({'Variedad Real': y_nuevos, 'Predicción': y_pred_nuevos})
 
 
-with open('informes/informe_arbol.txt', 'w') as f:
+with open('informes/informe_arbol_picual.txt', 'w') as f:
     f.write(f"Precisión del modelo Árbol de Decisión: {accuracy * 100:.2f}%\n")
     f.write("\nClasificación Completa:\n")
     f.write(classification_report(y_test, y_pred))

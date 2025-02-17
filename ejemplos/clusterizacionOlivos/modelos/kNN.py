@@ -8,10 +8,10 @@ import os
 os.environ["LOKY_MAX_CPU_COUNT"] = "4"
 
 # Importación de los datos
-datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloArbequina.csv')
-datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaArbequina.csv')
+datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloPicual.csv')
+datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaPicual.csv')
+print(datos_nuevos.columns)
 
-# Dividir en predictores (X), salida (y) y 'num_pixeles'
 X = datos_final.drop(columns=['IDENTIFICADOR','Variedad', 'num_pixeles'])
 y = datos_final['Variedad']
 
@@ -44,7 +44,7 @@ X_nuevos_normalizado = scaler.transform(X_nuevos)
 y_pred_nuevos = knn.predict(X_nuevos_normalizado)
 
 # Crear el contenido para el archivo .txt
-with open('informes/informe_modelo_kNN.txt', 'w') as f:
+with open('informes/informe_modelo_kNN_2PI.txt', 'w') as f:
     f.write("Informe del Modelo KNN\n")
     f.write("=" * 40 + "\n")
 

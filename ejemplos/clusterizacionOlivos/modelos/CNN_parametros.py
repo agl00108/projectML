@@ -8,6 +8,7 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, Dropout, Input, LayerNormalization
 import time
+from collections import Counter
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -19,18 +20,18 @@ EPOCHS = 50
 PATIENCE = 10
 
 # Mejores parámetros obtenidos ARBEQUINA
+'''
 best_params = {
     'dropout_rate': 0.35483380605435355,
-    'ff_dim': 60.67277126328847,
-    'filters_1': 15.367495896857902,
-    'filters_2': 31.218256274904483,
-    'filters_3': 65.456323876404326,
-    'filters_4': 1325.51251994102324,
-    'kernel_size': 3.990006256681035
-}
+    'ff_dim': 64,
+    'filters_1': 16,
+    'filters_2': 32,
+    'filters_3': 64,
+    'filters_4': 128,
+    'kernel_size': 4
+}'''
 
 # Mejores parámetros obtenidos PICUAL
-'''
 best_params = {
     'dropout_rate': 0.35483380605435355,
     'ff_dim': 59.99681409968073,
@@ -40,7 +41,7 @@ best_params = {
     'filters_4': 111.31192330114831,
     'kernel_size': 4.880006256681035
 }
-'''
+
 
 # Función para establecer la semilla
 def establecer_semilla(seed=1234):
@@ -79,6 +80,13 @@ def preparar_datos(df):
     X_train = scaler.fit_transform(X_train.reshape(-1, X_train.shape[1])).reshape(X_train.shape)
     X_test = scaler.transform(X_test.reshape(-1, X_test.shape[1])).reshape(X_test.shape)
 
+    # Contamos cuántos 0 y 1 hay en y_train y y_test
+    train_counts = Counter(y_train)
+    test_counts = Counter(y_test)
+
+    print(f'En y_train, 0: {train_counts[0]}, 1: {train_counts[1]}')
+    print(f'En y_test, 0: {test_counts[0]}, 1: {test_counts[1]}')
+
     return X_train, X_test, y_train, y_test, scaler
 
 # Función principal para ejecutar la red neuronal CNN
@@ -98,7 +106,8 @@ def ejecutar_cnn(df):
     model.add(MaxPooling1D(pool_size=POOL_SIZE))
     model.add(Flatten())
     model.add(Dense(int(best_params['ff_dim']), activation='relu'))
-    model.add(Dropout(best_params['dropout_rate']))
+    #Dropout para picual
+    #model.add(Dropout(best_params['dropout_rate']))
     model.add(Dense(1, activation='sigmoid'))
 
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -190,8 +199,8 @@ def comprobar_nuevos_datos(model, nuevos_datos, scaler):
     plt.show()
 
 # Cargar los nuevos datos desde un archivo CSV
-nuevos_datos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaArbequina.csv')
-#nuevos_datos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaPicual.csv')
+#nuevos_datos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaArbequina.csv')
+nuevos_datos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaPicual.csv')
 
 # Preprocesar y comprobar los nuevos datos con el modelo entrenado
 comprobar_nuevos_datos(model, nuevos_datos, scaler)

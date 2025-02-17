@@ -5,8 +5,8 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 # Cargar los datos
-datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloArbequina.csv')
-datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaArbequina.csv')
+datos_final = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloPicual.csv')
+datos_nuevos = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosPruebaPicual.csv')
 
 # Separar características y la variable objetivo
 X = datos_final.drop(['IDENTIFICADOR','Variedad', 'num_pixeles'], axis=1)
@@ -38,7 +38,7 @@ X_nuevos_binarizado = (X_nuevos > mediana_train).astype(int)
 y_pred_nuevos = bnb.predict(X_nuevos_binarizado)
 
 # Generar el informe del modelo
-with open('informes/informe_modelo_naive_bayes.txt', 'w') as f:
+with open('informes/informe_modelo_naive_bayes_Picual.txt', 'w') as f:
     f.write("Informe del Modelo Naive Bayes\n")
     f.write("=" * 40 + "\n")
 
