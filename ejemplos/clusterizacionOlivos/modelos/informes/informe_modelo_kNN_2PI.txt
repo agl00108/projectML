@@ -1,0 +1,207 @@
+Informe del Modelo KNN
+========================================
+Precisión del modelo KNN: 57.39%
+
+Clasificación Completa:
+              precision    recall  f1-score   support
+
+       NO PI       0.56      0.57      0.57        56
+          PI       0.59      0.58      0.58        59
+
+    accuracy                           0.57       115
+   macro avg       0.57      0.57      0.57       115
+weighted avg       0.57      0.57      0.57       115
+
+Matriz de Confusión:
+[[32 24]
+ [25 34]]
+Comparación de Predicciones en el Conjunto de Prueba:
+ Real Predicción
+   PI         PI
+   PI         PI
+   PI      NO PI
+NO PI      NO PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+NO PI      NO PI
+   PI      NO PI
+   PI         PI
+NO PI         PI
+NO PI      NO PI
+   PI      NO PI
+NO PI      NO PI
+NO PI         PI
+   PI      NO PI
+   PI      NO PI
+NO PI      NO PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+NO PI         PI
+NO PI      NO PI
+NO PI         PI
+   PI         PI
+   PI         PI
+   PI      NO PI
+NO PI         PI
+   PI      NO PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+NO PI         PI
+   PI         PI
+   PI         PI
+   PI      NO PI
+NO PI         PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+   PI      NO PI
+   PI      NO PI
+   PI         PI
+   PI         PI
+   PI      NO PI
+   PI         PI
+NO PI         PI
+   PI      NO PI
+NO PI      NO PI
+   PI         PI
+NO PI         PI
+   PI         PI
+   PI         PI
+NO PI      NO PI
+NO PI         PI
+   PI         PI
+   PI      NO PI
+   PI      NO PI
+NO PI         PI
+NO PI      NO PI
+NO PI         PI
+NO PI      NO PI
+NO PI      NO PI
+NO PI         PI
+   PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+NO PI      NO PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+NO PI         PI
+NO PI         PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+   PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+   PI         PI
+   PI         PI
+   PI      NO PI
+NO PI         PI
+   PI         PI
+NO PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+   PI         PI
+   PI      NO PI
+   PI         PI
+NO PI         PI
+NO PI      NO PI
+   PI      NO PI
+   PI         PI
+NO PI         PI
+Predicciones en los Datos Nuevos:
+Variedad Real Predicción
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+Informe generado correctamente.

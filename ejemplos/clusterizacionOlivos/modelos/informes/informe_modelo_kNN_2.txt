@@ -1,0 +1,96 @@
+Informe del Modelo KNN
+========================================
+Precisión del modelo KNN: 56.25%
+
+Clasificación Completa:
+              precision    recall  f1-score   support
+
+          AR       0.50      0.75      0.60        28
+       NO AR       0.68      0.42      0.52        36
+
+    accuracy                           0.56        64
+   macro avg       0.59      0.58      0.56        64
+weighted avg       0.60      0.56      0.55        64
+
+Matriz de Confusión:
+[[21  7]
+ [21 15]]
+Comparación de Predicciones en el Conjunto de Prueba:
+ Real Predicción
+NO AR      NO AR
+   AR         AR
+NO AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR      NO AR
+   AR      NO AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+NO AR         AR
+NO AR         AR
+NO AR      NO AR
+   AR         AR
+NO AR         AR
+   AR      NO AR
+NO AR         AR
+   AR         AR
+   AR         AR
+NO AR         AR
+   AR         AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR         AR
+NO AR         AR
+NO AR      NO AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR         AR
+   AR         AR
+NO AR      NO AR
+NO AR      NO AR
+NO AR         AR
+NO AR         AR
+NO AR         AR
+NO AR         AR
+   AR         AR
+   AR      NO AR
+NO AR         AR
+NO AR         AR
+   AR      NO AR
+   AR         AR
+   AR      NO AR
+NO AR         AR
+NO AR         AR
+NO AR         AR
+   AR         AR
+NO AR         AR
+   AR         AR
+   AR         AR
+   AR         AR
+NO AR         AR
+   AR         AR
+   AR      NO AR
+NO AR         AR
+   AR         AR
+NO AR      NO AR
+   AR         AR
+   AR      NO AR
+Predicciones en los Datos Nuevos:
+Variedad Real Predicción
+           AR         AR
+           AR         AR
+           AR      NO AR
+           AR         AR
+           AR         AR
+        NO AR         AR
+        NO AR      NO AR
+        NO AR      NO AR
+        NO AR         AR
+        NO AR      NO AR
+Informe generado correctamente.

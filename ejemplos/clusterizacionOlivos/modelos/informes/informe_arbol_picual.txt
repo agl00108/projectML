@@ -1,0 +1,202 @@
+Precisión del modelo Árbol de Decisión: 59.13%
+
+Clasificación Completa:
+              precision    recall  f1-score   support
+
+       NO PI       0.59      0.54      0.56        56
+          PI       0.59      0.64      0.62        59
+
+    accuracy                           0.59       115
+   macro avg       0.59      0.59      0.59       115
+weighted avg       0.59      0.59      0.59       115
+
+Comparación de Predicciones en el Conjunto de Prueba:
+ Real Predicción
+   PI      NO PI
+   PI      NO PI
+   PI      NO PI
+NO PI      NO PI
+NO PI      NO PI
+NO PI         PI
+   PI         PI
+   PI      NO PI
+NO PI      NO PI
+   PI         PI
+   PI      NO PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+NO PI         PI
+   PI         PI
+   PI         PI
+NO PI         PI
+NO PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+   PI      NO PI
+NO PI         PI
+NO PI      NO PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+   PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+   PI      NO PI
+   PI         PI
+NO PI      NO PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+   PI         PI
+NO PI      NO PI
+NO PI      NO PI
+NO PI      NO PI
+   PI         PI
+NO PI         PI
+   PI         PI
+NO PI      NO PI
+   PI         PI
+   PI      NO PI
+   PI         PI
+   PI      NO PI
+   PI      NO PI
+   PI      NO PI
+NO PI         PI
+   PI         PI
+NO PI         PI
+   PI         PI
+NO PI      NO PI
+   PI         PI
+   PI      NO PI
+NO PI         PI
+NO PI         PI
+   PI         PI
+   PI      NO PI
+   PI      NO PI
+NO PI         PI
+NO PI         PI
+NO PI         PI
+NO PI      NO PI
+NO PI      NO PI
+NO PI         PI
+   PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI         PI
+NO PI         PI
+NO PI         PI
+   PI         PI
+   PI         PI
+NO PI         PI
+   PI         PI
+NO PI      NO PI
+NO PI         PI
+   PI         PI
+NO PI      NO PI
+NO PI         PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+   PI      NO PI
+NO PI         PI
+   PI      NO PI
+NO PI      NO PI
+   PI         PI
+NO PI         PI
+   PI      NO PI
+   PI         PI
+   PI         PI
+   PI         PI
+NO PI      NO PI
+   PI      NO PI
+NO PI         PI
+NO PI         PI
+   PI      NO PI
+   PI         PI
+   PI         PI
+   PI         PI
+NO PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+   PI         PI
+NO PI         PI
+Predicciones en los Datos Nuevos:
+Variedad Real Predicción
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+Informe generado correctamente.

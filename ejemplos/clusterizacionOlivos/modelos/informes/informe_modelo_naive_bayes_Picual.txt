@@ -1,0 +1,207 @@
+Informe del Modelo Naive Bayes
+========================================
+Precisión del modelo Naive Bayes: 52.17%
+
+Clasificación Completa:
+              precision    recall  f1-score   support
+
+       NO PI       0.51      0.50      0.50        56
+          PI       0.53      0.54      0.54        59
+
+    accuracy                           0.52       115
+   macro avg       0.52      0.52      0.52       115
+weighted avg       0.52      0.52      0.52       115
+
+Matriz de Confusión:
+[[28 28]
+ [27 32]]
+Comparación de Predicciones en el Conjunto de Prueba:
+ Real Predicción
+   PI         PI
+   PI         PI
+   PI      NO PI
+NO PI      NO PI
+NO PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+   PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+   PI         PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI         PI
+NO PI         PI
+   PI      NO PI
+   PI      NO PI
+NO PI         PI
+NO PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+   PI         PI
+NO PI      NO PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+   PI         PI
+NO PI         PI
+   PI      NO PI
+NO PI      NO PI
+   PI         PI
+   PI      NO PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+NO PI         PI
+   PI         PI
+   PI         PI
+   PI         PI
+NO PI         PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+   PI      NO PI
+   PI      NO PI
+   PI      NO PI
+   PI         PI
+   PI         PI
+   PI         PI
+NO PI      NO PI
+   PI      NO PI
+NO PI         PI
+   PI         PI
+NO PI      NO PI
+   PI         PI
+   PI         PI
+NO PI         PI
+NO PI         PI
+   PI         PI
+   PI      NO PI
+   PI      NO PI
+NO PI         PI
+NO PI         PI
+NO PI      NO PI
+NO PI         PI
+NO PI      NO PI
+NO PI         PI
+   PI      NO PI
+NO PI         PI
+   PI         PI
+NO PI      NO PI
+NO PI         PI
+NO PI      NO PI
+   PI      NO PI
+   PI      NO PI
+NO PI      NO PI
+   PI         PI
+NO PI         PI
+NO PI         PI
+   PI         PI
+NO PI         PI
+NO PI         PI
+NO PI      NO PI
+NO PI         PI
+   PI      NO PI
+   PI         PI
+   PI         PI
+NO PI         PI
+   PI      NO PI
+NO PI         PI
+   PI      NO PI
+NO PI      NO PI
+   PI      NO PI
+   PI         PI
+   PI      NO PI
+   PI      NO PI
+NO PI      NO PI
+   PI         PI
+NO PI      NO PI
+NO PI         PI
+   PI      NO PI
+   PI         PI
+   PI      NO PI
+   PI         PI
+NO PI         PI
+NO PI      NO PI
+   PI         PI
+   PI      NO PI
+NO PI      NO PI
+Predicciones en los Datos Nuevos:
+Variedad Real Predicción
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+           PI      NO PI
+           PI         PI
+           PI         PI
+           PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI         PI
+        NO PI         PI
+        NO PI      NO PI
+        NO PI         PI
+        NO PI      NO PI
+Informe generado correctamente.
