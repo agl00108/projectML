@@ -58,12 +58,18 @@ def mostrar_resultados(y_true, y_pred, loss, accuracy, nombre_modelo, y_pred_pro
     print(classification_report(y_true, y_pred))
 
     cm = confusion_matrix(y_true, y_pred)
+
+    # Personalización de la matriz de confusión
     plt.figure(figsize=(8, 6))
-    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
-    plt.title(f'Confusion Matrix - {nombre_modelo}')
-    plt.xlabel('Predictions')
-    plt.ylabel('Real Values')
+    sns.heatmap(cm, annot=True, fmt="d", cmap="YlGnBu", cbar=False,
+                annot_kws={"size": 16, "weight": "bold"}, linewidths=1.5, linecolor="black")
+    plt.title(f'Confusion Matrix - {nombre_modelo}', fontsize=16, weight='bold')
+    plt.xlabel('Predictions', fontsize=14, weight='bold')
+    plt.ylabel('Real Values', fontsize=14, weight='bold')
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
     plt.show()
+
 
 # Función para preparar los datos
 def preparar_datos(df):
@@ -106,8 +112,6 @@ def ejecutar_cnn(df):
     model.add(MaxPooling1D(pool_size=POOL_SIZE))
     model.add(Flatten())
     model.add(Dense(int(best_params['ff_dim']), activation='relu'))
-    #Dropout para picual
-    #model.add(Dropout(best_params['dropout_rate']))
     model.add(Dense(1, activation='sigmoid'))
 
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -117,37 +121,41 @@ def ejecutar_cnn(df):
     history = model.fit(X_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE,
                         validation_data=(X_test, y_test), callbacks=[early_stopping])
 
-    plt.plot(history.history['accuracy'])
-    plt.plot(history.history['val_accuracy'])
-    plt.title('Accuracy over epochs')
-    plt.xlabel('Epoch')
-    plt.ylabel('Accuracy')
-    plt.legend(['Train', 'Test'])
+    # Primera gráfica: cambiar estilo y color
+    plt.style.use('seaborn-v0_8-darkgrid')
+    plt.plot(history.history['accuracy'], label='Train Accuracy', color='purple', linestyle='dotted')
+    plt.plot(history.history['val_accuracy'], label='Test Accuracy', color='pink', linestyle='dashed')
+    plt.title('Model Accuracy Across Epochs', fontsize=14)
+    plt.xlabel('Epoch', fontsize=12)
+    plt.ylabel('Accuracy', fontsize=12)
+    plt.legend(loc='lower right')
     plt.show()
 
-    # Graficar precisión y pérdida
-    plt.figure(figsize=(12, 5))
+    # Segunda gráfica: precisión y pérdida con diferentes colores y título
+    plt.figure(figsize=(12, 6))
 
-    # Subplot para la precisión
+    # Subplot para la precisión, colores y marcadores diferentes
     plt.subplot(1, 2, 1)
-    plt.plot(history.history['accuracy'], label='Train Accuracy', color='blue')
-    plt.plot(history.history['val_accuracy'], label='Test Accuracy', color='orange')
-    plt.title('Accuracy through the epochs')
-    plt.xlabel('Epoch')
-    plt.ylabel('Accuracy')
-    plt.legend()
+    plt.plot(history.history['accuracy'], label='Train Accuracy', color='darkblue', marker='o')
+    plt.plot(history.history['val_accuracy'], label='Test Accuracy', color='orange', marker='s')
+    plt.title('Training vs Test Accuracy', fontsize=14)
+    plt.xlabel('Epoch', fontsize=12)
+    plt.ylabel('Accuracy', fontsize=12)
+    plt.legend(loc='upper left')
 
-    # Subplot para la pérdida
+    # Subplot para la pérdida, colores diferentes
     plt.subplot(1, 2, 2)
-    plt.plot(history.history['loss'], label='Train Loss', color='red')
-    plt.plot(history.history['val_loss'], label='Test Loss', color='green')
-    plt.title('Loss through the epochs')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss (MSE)')
-    plt.legend()
+    plt.plot(history.history['loss'], label='Train Loss', color='crimson', linestyle='-.')
+    plt.plot(history.history['val_loss'], label='Test Loss', color='darkgreen', linestyle='--')
+    plt.title('Training vs Test Loss', fontsize=14)
+    plt.xlabel('Epoch', fontsize=12)
+    plt.ylabel('Loss (Binary Crossentropy)', fontsize=12)
+    plt.legend(loc='upper right')
 
+    plt.tight_layout()
     plt.show()
 
+    # Evaluar el modelo
     loss, accuracy = model.evaluate(X_test, y_test)
     y_pred_prob = model.predict(X_test)
     y_pred = (y_pred_prob > 0.5).astype("int32")
@@ -159,7 +167,7 @@ def ejecutar_cnn(df):
     execution_time = end_time - start_time
     print(f'Tiempo de ejecución: {execution_time:.2f} segundos')
 
-    return model, scaler  # Devolver el modelo y el scaler
+    return model, scaler
 
 # PREDICCIÓN DE DATOS NUEVOS
 data = pd.read_csv('../../../archivos/archivosRefactorizados/clusterizacionOlivos/DatosModeloArbequina.csv')
@@ -192,10 +200,13 @@ def comprobar_nuevos_datos(model, nuevos_datos, scaler):
 
     cm = confusion_matrix(y_nuevos, y_pred)
     plt.figure(figsize=(8, 6))
-    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
+    sns.heatmap(cm, annot=True, fmt="d", cmap="YlGnBu", cbar=False,
+                annot_kws={"size": 16, "weight": "bold"}, linewidths=1.5, linecolor="black")
     plt.title('Confusion Matrix - New Data')
     plt.xlabel('Predictions')
     plt.ylabel('Real Values')
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
     plt.show()
 
 # Cargar los nuevos datos desde un archivo CSV
